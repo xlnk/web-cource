@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template</title>
+    <style>
+        html {
+            display: flex;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            font-weight: bold;
+            font-size: 8rem;
+            text-align: center;
+        }
+        .menu {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+        }
+        .page {
+            display: flex;
+            flex-direction: row;
+
+        }
+        footer {
+            text-align: center;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+        .left-block {
+            display: flex;
+            flex-direction: column;
+        }
+        .page, footer, header, .menu, .content {
+            border: 1px solid black;
+        }
+        .award, .left-block {
+            min-width: 10rem;
+        }
+    </style>
+</head>
+<body>
+    <header>Шапка сайта</header>
+    <ul class="menu">
+        <li>Меню 1</li>
+        <li>Меню 2</li>
+        <li>Меню 3</li>
+        <li>Меню 4</li>
+    </ul>
+    <div class="page">
+    <div class="left-block"><a href="">Ссылка-1</a><a href="">Ссылка-2</a><a href="">Ссылка-3</a><a
+            href="">Ссылка-4</a></div>
+        <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dignissimos pariatur qui quos voluptas? A alias blanditiis cum error facilis ipsum iure nam nobis perspiciatis placeat quia, sint sunt ut.</div>
+        <div class="award">
+            <div>Реклама 1</div>
+            <div>Реклама 2</div>
+            <div>Реклама 3</div>
+            <div>Реклама 4</div>
+        </div>
+    </div>
+    <footer>2000-<span id="cur_year">2017</span> Все права защищены.</footer>
+
+    <script>
+        "use strict";
+        document.getElementById("cur_year").textContent = new Date().getFullYear().toString();
+    </script>
+</body>
+</html>
