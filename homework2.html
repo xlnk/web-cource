@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        td {
+            border: 1px solid black;
+        }
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <table id="containerMatrix"></table>
+    <div>Номера строк сумма которых больше <span id="maxSum"></span>: <span id="moreSumElement"></span></div>
+
+    <script>
+        "use strict";
+        const WIDTH = 4;
+        const HEIGHT = 4;
+        const MAX_NUMBER = 10;
+        const SUM = 19;
+
+        let matrix = [];
+
+        for (let m = 0; m < HEIGHT; m++) {
+            matrix.push([]);
+            for (let n = 0; n < WIDTH; n++) {
+                matrix[m].push(Math.floor(Math.random() * MAX_NUMBER));
+            }
+        }
+
+        let moreSum = [];
+
+        let textMathix = matrix.reduce((previousValue, currentValue) => {
+            let sum = currentValue.reduce((p, c) => p + c);
+            return previousValue + (sum <= SUM ? "<tr>" : "<tr style='background-color: red;'>") + currentValue.reduce((p, c) => p + "<td>" + c + "</td>", "") + "</tr>";
+        }, "");
+        // matrix.forEach((value, index, array) => {
+        //     textMathix += "<tr>";
+        //     value.forEach((value2) => textMathix += "<td>" + value2 + "</td>");
+        //     textMathix += "</tr>";
+        // });
+
+        console.log(textMathix);
+
+        let maxSumElement = document.getElementById("maxSum");
+        if (maxSumElement != null) {
+            maxSumElement.innerText = SUM;
+        }
+
+        let sumText = "";
+
+        matrix.forEach((value, index, array) => {
+            let sum = value.reduce((s, v) => s + v);
+            if (sum > SUM) {
+                moreSum.push(index);
+            }
+        });
+        // sumText = matrix.map((value, ind) => [value.reduce((p, c) => p + c), ind]).filter(i => i[1] > SUM).map(value => value[0]).reduce(((previousValue, currentValue) => previousValue + ", " + currentValue));
+
+        let moreSumElement = document.getElementById("moreSumElement");
+        if (moreSumElement != null) {
+            let str = "";
+            if (moreSum.length > 0) {
+
+                str = moreSum.reduce((p, v) => p + ", " + v);
+
+            } else {
+                str = "нет строк";
+            }
+            moreSumElement.innerHTML = str;
+        }
+
+
+        let containerMatrix = document.getElementById("containerMatrix");
+        if (containerMatrix != null) {
+            containerMatrix.innerHTML = textMathix;
+        }
+
+
+
+    </script>
+</body>
+</html>

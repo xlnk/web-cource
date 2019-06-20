@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        const COST = 35;
+        const ONE_COIN = 5;
+
+        function Display(div) {
+
+            this.clean = function () {
+                div.innerText = "";
+            };
+            this.putLine = function(str) {
+                div.innerText += str + "\n";
+
+            }
+        }
+
+        function Mashine() {
+            let money = 0;
+            this.addCoin = function(coin) {
+                coin ? money = coin : money = ONE_COIN;
+            }
+            // this.
+        }
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let btChange = document.getElementById("button-change");
+            // btChange && btChange.addEventListener()
+        })
+
+
+    </script>
+</head>
+<body>
+    <div class="mashine">
+        <div id="display"></div>
+        <div class="elements">
+            <div class="coffee-block">
+                <div class="cup">
+                    <div id="coffee"></div>
+                </div>
+            </div>
+            <div class="input-block">
+                <div id="button-start"></div>
+                <div class="sale-block">
+                    <div id="coins"><div></div></div>
+                </div>
+                <div id="button-change"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
