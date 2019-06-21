@@ -53,7 +53,8 @@
                 }
             }
             _makeCoffee() {
-                this._print("Кофе готов" + (this._money > 0 ? " заберите сдачу" : ""));
+                // this._print("Кофе готов" + (this._money > 0 ? " заберите сдачу" : ""));
+                document.getElementById("coffee").style.clip = "rect(15px, auto, auto, auto)";
             }
 
         }
@@ -78,7 +79,7 @@
         <div class="elements">
             <div class="coffee-block">
                 <div class="cup">
-                    <div id="coffee-level"><div id="coffee"></div></div>
+                    <div id="coffee"></div>
                 </div>
             </div>
             <div class="input-block">

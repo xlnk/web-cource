@@ -53,13 +53,9 @@ body {
     box-sizing: content-box;
     border-bottom-left-radius: 10px 100px;
     border-bottom-right-radius: 10px 100px;
+    position: relative;
 }
 
-#coffee-level {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
 
 #coffee {
     background: brown;
@@ -67,6 +63,9 @@ body {
     border-bottom-right-radius: 8px 100px;
     height: 140px;
     width: 70px;
+    position: absolute;
+    clip: rect(140px, auto, auto, auto);
+    transition: clip 3s;
 }
 
 
