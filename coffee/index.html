@@ -10,31 +10,64 @@
         const COST = 35;
         const ONE_COIN = 5;
 
-        function Display(div) {
 
-            this.clean = function () {
-                div.innerText = "";
+        class Machine {
+            constructor(display) {
+                this._display = display;
+                this._money = 0;
+
+                this._print(`Стоимость кофе: ${COST} руб`);
+
+                this.returnChange = this.returnChange.bind(this);
+                this.action = this.action.bind(this);
+                this.addCoin = this.addCoin.bind(this);
+            }
+            _print(str) {
+                this._display.textContent = str;
+            }
+            addCoin(coin) {
+                if (typeof coin !== "number") {
+                    coin = null;
+                }
+                coin ? this._money += coin : this._money += ONE_COIN;
+                this._print(`Внесено: ${this._money} руб`);
             };
-            this.putLine = function(str) {
-                div.innerText += str + "\n";
-
+            _error(str) {
+                this._display.textContent = str;
             }
+            returnChange() {
+                if (this._money <= 0) {
+                    this._error("Ошибка, в автомат не внесли деньги");
+                    return 0;
+                }
+                this._print(`Сдача ${this._money} руб`);
+                this._money = 0;
+            };
+            action() {
+                if (this._money >= COST) {
+                    this._print("Подождите, кофе готовится...");
+                    this._money -= COST;
+                    this._makeCoffee()
+                } else {
+                    this._error(`Ошибка, не хватает денег, нужно внести: ${COST - this._money} руб`);
+                }
+            }
+            _makeCoffee() {
+                this._print("Кофе готов" + (this._money > 0 ? " заберите сдачу" : ""));
+            }
+
         }
 
-        function Mashine() {
-            let money = 0;
-            this.addCoin = function(coin) {
-                coin ? money = coin : money = ONE_COIN;
-            }
-            // this.
-        }
 
-
-
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", () => {
             let btChange = document.getElementById("button-change");
             // btChange && btChange.addEventListener()
-        })
+            let machine = new Machine(document.getElementById("display"));
+            btChange.addEventListener("click", machine.returnChange);
+            document.getElementById("coins").addEventListener("click", machine.addCoin);
+            document.getElementById("button-start").addEventListener("click", machine.action);
+
+        });
 
 
     </script>
@@ -45,12 +78,12 @@
         <div class="elements">
             <div class="coffee-block">
                 <div class="cup">
-                    <div id="coffee"></div>
+                    <div id="coffee-level"><div id="coffee"></div></div>
                 </div>
             </div>
             <div class="input-block">
                 <div id="button-start"></div>
-                <div class="sale-block">
+                <div class="currency-validator">
                     <div id="coins"><div></div></div>
                 </div>
                 <div id="button-change"></div>
